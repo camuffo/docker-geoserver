@@ -20,6 +20,9 @@ RUN wget --no-check-certificate https://kent.dl.sourceforge.net/project/libjpeg-
  && dpkg -i ./libjpeg*.deb \
  && apt-get -f install
 
+#------------- Datadir --------------------------------------------------------
+ADD resources/geoserver-datadir /var/geoserver/datadir
+
 #------------- Cleanup --------------------------------------------------------
 
 # Delete resources after installation
