@@ -194,7 +194,7 @@ function main {
     download_plugin ext querylayer
     download_plugin ext wps
     download_plugin community authkey
-    download_plugin community status-monitoring
+    # download_plugin community status-monitoring
     download_plugin community wmts-multi-dimensional
     download_marlin
     download_fonts
