@@ -193,6 +193,7 @@ function main {
     download_plugin ext libjpeg-turbo
     download_plugin ext querylayer
     download_plugin ext wps
+    download_plugin ext csw
     download_plugin ext authkey
     download_plugin community wmts-multi-dimensional
     download_marlin
