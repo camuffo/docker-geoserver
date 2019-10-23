@@ -27,7 +27,7 @@ function help(){
 		echo "Usage: $0 [docker image tag] [geoserver version] [geoserver master version] [github token] [github repository] [github repository owner] [datadir release number] [pull|no pull];"
 		echo "";
 		echo "[docker image tag] :          the tag to be used for the docker iamge ";
-		echo "[geoserver version] :         the release version of geoserver to be used; you can set it to master if you want the last release";
+		echo "[geoserver version] :         the release version of geoserver to be used (e.g. 2.16.x, 2.16.0 or master)";
 		echo "[geoserver master version] :  if you use the master version for geoserver you need to set it to the numerical value for the next release;"
 		echo "                              if you use a released version you need to put it to the release number";
 		echo "[github token]:               token to access the Github API"; 
@@ -42,6 +42,10 @@ function help(){
 
 
 function clean_up_directory() {
+	if [ -z "${1}" ]
+		echo "clean_up_directory expects exactly 1 argument"
+		exit 1
+	fi
 	rm -rf ${1}/*
 }
 
@@ -154,7 +158,7 @@ function build_with_data_dir() {
 		--build-arg INCLUDE_GS_WAR=true \
 		--build-arg INCLUDE_PLUGINS=true \
 		--build-arg ADD_MARLIN_RENDERER=true \
-		--build-arg ADD_EXTRA_FONTS=false \
+		--build-arg ADD_EXTRA_FONTS=true \
 		--build-arg GEOSERVER_APP_NAME=geoserver \
 		-t geosolutionsit/geoserver:"${TAG}" \
 		 .
@@ -176,9 +180,9 @@ function build_without_data_dir() {
 		--build-arg INCLUDE_GS_WAR=true \
 		--build-arg INCLUDE_PLUGINS=true \
 		--build-arg ADD_MARLIN_RENDERER=true \
-		--build-arg ADD_EXTRA_FONTS=false \
+		--build-arg ADD_EXTRA_FONTS=true \
 		--build-arg GEOSERVER_APP_NAME=geoserver \
-		-t geosolutionsit/geoserver:"${TAG}"-dev \
+		-t geosolutionsit/geoserver:"${TAG}"     \
 		 .
 }
 
@@ -191,8 +195,13 @@ function main {
     download_plugin ext monitor
     download_plugin ext control-flow
     download_plugin ext libjpeg-turbo
-    download_plugin community status-monitoring
+    download_plugin ext querylayer
+    download_plugin ext wps
+    download_plugin ext csw
+    download_plugin ext authkey
+    download_plugin community wmts-multi-dimensional
     download_marlin
+    download_fonts
 
 	if  [[ ${GEOSERVER_DATA_DIR_RELEASE} = "dev" ]]; then
    	    build_without_data_dir "${TAG}" "${PULL}"
