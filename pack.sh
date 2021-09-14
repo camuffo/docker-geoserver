@@ -231,7 +231,7 @@ function main {
     download_plugin ext wmts-multi-dimensional
     download_plugin ext wps-download
     download_plugin ext css
-#    download_plugin community status-monitoring
+    download_plugin community geopkg
 
     build_artifact
 }
