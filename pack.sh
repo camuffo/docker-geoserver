@@ -232,6 +232,7 @@ function main {
     download_plugin ext wps-download
     download_plugin ext css
     download_plugin community geopkg
+    download_plugin community dds
 
     build_artifact
 }
