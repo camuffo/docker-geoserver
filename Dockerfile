@@ -62,9 +62,9 @@ RUN \
 
 FROM tomcat:9-jdk11-openjdk
 
-ARG UID=1000
-ARG GID=1000
-ARG UNAME=tomcat
+ARG UID=0
+ARG GID=0
+ARG UNAME=root
 ARG CUSTOM_FONTS="./.placeholder"
 ENV ADMIN_PASSWORD=""
 ENV APP_LOCATION="geoserver"
@@ -139,8 +139,8 @@ COPY geoserver-rest-config.sh /usr/local/bin/geoserver-rest-config.sh
 COPY geoserver-rest-reload.sh /usr/local/bin/geoserver-rest-reload.sh
 COPY entrypoint.sh /entrypoint.sh
 COPY ${CUSTOM_FONTS} $GEOSERVER_DATA_DIR/styles/
-RUN groupadd -g $GID $UNAME
-RUN useradd -m -u $UID -g $GID --system $UNAME
+#RUN groupadd -g $GID $UNAME
+#RUN useradd -m -u $UID -g $GID --system $UNAME
 RUN chown -R $UID:$GID $GEOSERVER_LOG_DIR $CATALINA_BASE $GEOWEBCACHE_CACHE_DIR $GEOWEBCACHE_CONFIG_DIR $NETCDF_DATA_DIR $GRIB_CACHE_DIR $GEOSERVER_DATA_DIR
 
 RUN if [ ! -f "${GEOSERVER_DATA_DIR}/logging.xml" ]; then cp -a ${CATALINA_BASE}/webapps/geoserver/data/* ${GEOSERVER_DATA_DIR};fi
