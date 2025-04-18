@@ -42,7 +42,7 @@ jobs:
           wget -q 'https://build.geoserver.org/geoserver/2.26.x/community-latest/geoserver-2.26-SNAPSHOT-cog-s3-plugin.zip'
           wget -q 'https://build.geoserver.org/geoserver/2.26.x/community-latest/geoserver-2.26-SNAPSHOT-cog-http-plugin.zip'
           wget -q 'https://build.geoserver.org/geoserver/2.26.x/ext-latest/geoserver-2.26-SNAPSHOT-gwc-s3-plugin.zip'
-          wget -q 'https://www.dropbox.com/scl/fi/20jbv1psdmapvjij1vof6/2.26.x-20250516.zip?rlkey=2vldfdyuuddt9ngg7e21yumgg&st=t3g04mh7&dl=1' -O 2.26.x-20250516.zip
+          wget -q 'https://www.dropbox.com/scl/fi/3hd5ff80ify18ao4idn5d/2.26.x-20250516.zip?rlkey=3qqcq6qp29tiuq2cv6f2c5jlo&st=ho0zjylw&dl=1' -O 2.26.x-20250516.zip
           popd
           pwd
 
